@@ -9,7 +9,7 @@ const forecast = ( lat, long, lang, callback ) => {
             callback( body.error, undefined );
         } else {
             callback( undefined, `${body.currently.summary} It is currently ${body.currently. temperature} degress out. There is a ${body.currently.precipProbability}% chance of rain.\n ` +
-            `The wind speed today is ${body.currently.windSpeed} and pressure is ${body.currently.pressure}` );
+            `The wind speed today is ${body.currently.windSpeed} with a pressure ${body.currently.pressure}` );
         }
     } )
 }
