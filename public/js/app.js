@@ -1,14 +1,13 @@
 const forecast = ( location ) => {
     fetch( '/weather?address=' + location ).then( response => {
-        response.json().then( ( { error, location, forecast } = {} ) => {
+        response.json().then( ( { error, location, latitude, longitude, forecast } = {} ) => {
             if( error ) {
-                // console.log( error );
-                messageOne.textContent = error;
+                messageLocation.textContent = error;
             } else {
-                // console.log( 'location: ', location );
-                // console.log( 'forecast: ', forecast );
-                messageOne.textContent = location;
-                messageTwo.textContent = forecast;
+                messageLocation.textContent = 'Detail Location: ' + location;
+                messageLatitude.textContent = 'Latitude: ' + latitude;
+                messageLongitude.textContent = 'Longitude: ' + longitude;
+                messageSummary.textContent = 'Summary: ' + forecast;
             }
 
         } )
@@ -17,12 +16,16 @@ const forecast = ( location ) => {
 
 const weatherForm = document.querySelector( 'form' );
 const search = document.querySelector( 'input' );
-const messageOne = document.querySelector( '#message-1' );
-const messageTwo = document.querySelector( '#message-2' );
+const messageLocation = document.querySelector( '#message-location' );
+const messageLatitude = document.querySelector( '#message-latitude' );
+const messageLongitude = document.querySelector( '#message-longitude' );
+const messageSummary = document.querySelector( '#message-summary' );
 weatherForm.addEventListener( 'submit', ( event ) => {
     event.preventDefault();
-    messageOne.textContent = 'Loading...';
-    messageTwo.textContent = '';
+    messageLocation.textContent = 'Loading...';
+    messageLatitude.textContent = '';
+    messageLongitude.textContent = '';
+    messageSummary.textContent = '';
     const location = search.value;
     forecast( location );
 } );

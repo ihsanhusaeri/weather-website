@@ -71,6 +71,8 @@ app.get( '/weather', ( req, res ) => {
                 status: true,
                 address: req.query.address,
                 location,
+                latitude,
+                longitude,
                 forecast: forecastData
             } )
         } );
